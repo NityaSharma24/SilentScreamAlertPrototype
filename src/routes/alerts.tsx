@@ -64,13 +64,14 @@ function CurrentAlerts() {
             <p className="mt-2 text-2xl font-extrabold text-neutral-panel-foreground">
               East Chapel Hill High School
             </p>
-
-          <p className="mt-4 text-sm font-semibold text-neutral-panel-foreground/80">
-            {alerts.length === 0
-              ? "No active alerts on campus."
-              : `${alerts.length} active alert${alerts.length === 1 ? "" : "s"}.`}
-          </p>
+            <p className="mt-4 text-sm font-semibold text-neutral-panel-foreground/80">
+              {alerts.length === 0
+                ? "No active alerts on campus."
+                : `${alerts.length} active alert${alerts.length === 1 ? "" : "s"}.`}
+            </p>
+          </div>
         </div>
+
 
         <section>
           <div className="flex items-center justify-between gap-4">
