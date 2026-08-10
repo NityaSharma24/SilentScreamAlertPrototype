@@ -39,7 +39,7 @@ const banner: Record<AlertLevel, string> = {
 };
 
 function DescribeAlert() {
-  const { level, type } = Route.useSearch();
+  const { level, type } = Route.useSearch() as { level: AlertLevel; type: string };
   const navigate = useNavigate();
   const sendSms = useServerFn(sendAlertSms);
   const [details, setDetails] = useState("");

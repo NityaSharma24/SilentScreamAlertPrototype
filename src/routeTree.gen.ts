@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AlertsRouteImport } from './routes/alerts'
+import { Route as DescribeRouteImport } from './routes/describe'
 import { Route as OrangeRouteImport } from './routes/orange'
 import { Route as RedRouteImport } from './routes/red'
 import { Route as SentRouteImport } from './routes/sent'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const AlertsRoute = AlertsRouteImport.update({
   id: '/alerts',
   path: '/alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DescribeRoute = DescribeRouteImport.update({
+  id: '/describe',
+  path: '/describe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrangeRoute = OrangeRouteImport.update({
@@ -50,6 +56,7 @@ const YellowRoute = YellowRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/alerts': typeof AlertsRoute
+  '/describe': typeof DescribeRoute
   '/orange': typeof OrangeRoute
   '/red': typeof RedRoute
   '/sent': typeof SentRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/alerts': typeof AlertsRoute
+  '/describe': typeof DescribeRoute
   '/orange': typeof OrangeRoute
   '/red': typeof RedRoute
   '/sent': typeof SentRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/alerts': typeof AlertsRoute
+  '/describe': typeof DescribeRoute
   '/orange': typeof OrangeRoute
   '/red': typeof RedRoute
   '/sent': typeof SentRoute
@@ -74,15 +83,25 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/alerts' | '/orange' | '/red' | '/sent' | '/yellow'
+  fullPaths:
+    '/' | '/alerts' | '/describe' | '/orange' | '/red' | '/sent' | '/yellow'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/alerts' | '/orange' | '/red' | '/sent' | '/yellow'
-  id: '__root__' | '/' | '/alerts' | '/orange' | '/red' | '/sent' | '/yellow'
+  to: '/' | '/alerts' | '/describe' | '/orange' | '/red' | '/sent' | '/yellow'
+  id:
+    | '__root__'
+    | '/'
+    | '/alerts'
+    | '/describe'
+    | '/orange'
+    | '/red'
+    | '/sent'
+    | '/yellow'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AlertsRoute: typeof AlertsRoute
+  DescribeRoute: typeof DescribeRoute
   OrangeRoute: typeof OrangeRoute
   RedRoute: typeof RedRoute
   SentRoute: typeof SentRoute
@@ -103,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/alerts'
       fullPath: '/alerts'
       preLoaderRoute: typeof AlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/describe': {
+      id: '/describe'
+      path: '/describe'
+      fullPath: '/describe'
+      preLoaderRoute: typeof DescribeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/orange': {
@@ -139,6 +165,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AlertsRoute: AlertsRoute,
+  DescribeRoute: DescribeRoute,
   OrangeRoute: OrangeRoute,
   RedRoute: RedRoute,
   SentRoute: SentRoute,
