@@ -25,7 +25,7 @@ export const Route = createFileRoute("/red")({
       heading="RED ALERT"
       subtitle="Pressing the alert will send an emergency text to the Principal and School Police"
       options={["Gun Violence", "Fire Hazard", "Life-Threatening Situation"]}
-      note="Sorry, your phone's system does not support this option."
+      />
     />
   ),
 });
