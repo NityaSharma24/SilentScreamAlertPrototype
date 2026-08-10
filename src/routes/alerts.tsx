@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getAlerts, clearAlerts, timeAgo, type StoredAlert } from "@/lib/alerts-store";
+import campusPhoto from "@/assets/echhs.png.asset.json";
+
 
 export const Route = createFileRoute("/alerts")({
   head: () => ({
