@@ -26,6 +26,17 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --color-alert-red: var(--alert-red);
+  --color-alert-red-foreground: var(--alert-red-foreground);
+  --color-alert-orange: var(--alert-orange);
+  --color-alert-orange-foreground: var(--alert-orange-foreground);
+  --color-alert-yellow: var(--alert-yellow);
+  --color-alert-yellow-foreground: var(--alert-yellow-foreground);
+  --color-neutral-panel: var(--neutral-panel);
+  --color-neutral-panel-foreground: var(--neutral-panel-foreground);
+  --color-map: var(--map);
+  --shadow-alert: var(--shadow-alert);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
