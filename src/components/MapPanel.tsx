@@ -77,9 +77,12 @@ export function MapPanel({
         try {
           const res = await geocode({ data: { lat, lng } });
           setAddress(res.address);
+          if (res.address) window.localStorage.setItem("last-address", res.address);
           onAddressChange?.(res.address);
         } catch {
-          setAddress(`${lat.toFixed(5)}, ${lng.toFixed(5)}`);
+          const coords = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+          setAddress(coords);
+          window.localStorage.setItem("last-address", coords);
         }
       },
       () => {
