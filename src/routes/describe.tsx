@@ -44,8 +44,18 @@ function DescribeAlert() {
   const sendSms = useServerFn(sendAlertSms);
   const [details, setDetails] = useState("");
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const wordCount = details.trim() ? details.trim().split(/\s+/).length : 0;
+  const enoughWords = wordCount >= 20;
 
   const submit = () => {
+    if (!enoughWords) {
+      setError(`Please describe your situation in at least 20 words (currently ${wordCount}).`);
+      return;
+    }
+    setError(null);
+
     setBusy(true);
     addAlert({
       level,
@@ -93,13 +103,25 @@ function DescribeAlert() {
             className="mt-6 w-full rounded-lg border border-border bg-background px-4 py-3 text-base text-foreground outline-none focus:ring-2 focus:ring-ring"
           />
 
+          <p
+            className={`mt-2 text-sm font-semibold ${enoughWords ? "text-muted-foreground" : "text-alert-red"}`}
+          >
+            {wordCount} / 20 words minimum
+          </p>
+          {error ? (
+            <p className="mt-2 text-sm font-bold text-alert-red" role="alert">
+              {error}
+            </p>
+          ) : null}
+
           <div className="mt-8 flex flex-col gap-4">
             <button
               type="button"
               onClick={submit}
-              disabled={busy}
-              className="rounded-lg bg-submit py-5 text-center text-lg font-extrabold text-submit-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+              disabled={busy || !enoughWords}
+              className="rounded-lg bg-submit py-5 text-center text-lg font-extrabold text-submit-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
             >
+
               Submit Alert
             </button>
             <Link

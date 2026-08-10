@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getAlerts, clearAlerts, timeAgo, type StoredAlert } from "@/lib/alerts-store";
+import campusPhoto from "@/assets/echhs.png.asset.json";
+
 
 export const Route = createFileRoute("/alerts")({
   head: () => ({
@@ -50,19 +52,28 @@ function CurrentAlerts() {
       </h1>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-start">
-        <div className="overflow-hidden rounded-xl border border-border bg-neutral-panel p-6 text-center shadow-sm">
-          <p className="text-xs font-bold uppercase tracking-widest text-neutral-panel-foreground/70">
-            Campus
-          </p>
-          <p className="mt-2 text-2xl font-extrabold text-neutral-panel-foreground">
-            East Chapel Hill High School
-          </p>
-          <p className="mt-4 text-sm font-semibold text-neutral-panel-foreground/80">
-            {alerts.length === 0
-              ? "No active alerts on campus."
-              : `${alerts.length} active alert${alerts.length === 1 ? "" : "s"}.`}
-          </p>
+        <div className="overflow-hidden rounded-xl border border-border bg-neutral-panel shadow-sm">
+          <img
+            src={campusPhoto.url}
+            alt="Welcome to East Chapel Hill High School, Home of the Wildcats"
+            className="h-56 w-full object-cover sm:h-72"
+            loading="lazy"
+          />
+          <div className="p-6 text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-neutral-panel-foreground/70">
+              Campus
+            </p>
+            <p className="mt-2 text-2xl font-extrabold text-neutral-panel-foreground">
+              East Chapel Hill High School
+            </p>
+            <p className="mt-4 text-sm font-semibold text-neutral-panel-foreground/80">
+              {alerts.length === 0
+                ? "No active alerts on campus."
+                : `${alerts.length} active alert${alerts.length === 1 ? "" : "s"}.`}
+            </p>
+          </div>
         </div>
+
 
         <section>
           <div className="flex items-center justify-between gap-4">

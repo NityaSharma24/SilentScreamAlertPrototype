@@ -49,8 +49,12 @@ function Home() {
     <main className="w-full px-4 py-8 sm:px-6 lg:py-12">
       <header className="mb-8 text-center">
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-          School Safety Alert
+          Silent Scream
         </h1>
+        <p className="mt-1 text-sm font-bold uppercase tracking-widest text-muted-foreground">
+          A School Safety App
+        </p>
+
         <p className="mx-auto mt-3 max-w-2xl text-sm font-medium text-muted-foreground">
           Your live location is shared with the alert so staff and police know exactly where
           to go.
