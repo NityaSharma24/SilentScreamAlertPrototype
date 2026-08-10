@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { LocationPanel } from "@/components/LocationPanel";
+import { MapPanel } from "@/components/MapPanel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,44 +24,65 @@ export const Route = createFileRoute("/")({
 });
 
 const links = [
-  { to: "/red", label: "Red Alert", cls: "bg-alert-red text-alert-red-foreground" },
+  {
+    to: "/red",
+    label: "Red Alert",
+    desc: "Gun violence, fire hazard, life-threatening situation",
+    cls: "bg-alert-red text-alert-red-foreground",
+  },
   {
     to: "/orange",
     label: "Orange Alert",
+    desc: "Drug abuse, physical fight, injury",
     cls: "bg-alert-orange text-alert-orange-foreground",
   },
   {
     to: "/yellow",
     label: "Yellow Alert",
+    desc: "Contagion risk, mental health, bullying, accident",
     cls: "bg-alert-yellow text-alert-yellow-foreground",
   },
 ] as const;
 
 function Home() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-8 pt-6">
-      <LocationPanel />
+    <main className="mx-auto w-full max-w-6xl px-6 py-10 lg:py-16">
+      <header className="mb-10 text-center">
+        <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+          School Safety Alert
+        </h1>
+        <p className="mx-auto mt-3 max-w-2xl text-sm font-medium text-muted-foreground">
+          Your live location is shared with the alert so staff and police know exactly where
+          to go.
+        </p>
+      </header>
 
-      <h1 className="mt-6 text-center text-2xl font-extrabold tracking-tight text-foreground">
-        -SEND AN ALERT-
-      </h1>
+      <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
+        <MapPanel />
 
-      <div className="mt-5 flex flex-col gap-4">
-        {links.map((l) => (
-          <Link
-            key={l.to}
-            to={l.to}
-            className={`rounded-md py-5 text-center text-base font-extrabold shadow-alert transition-transform active:scale-[0.98] ${l.cls}`}
-          >
-            {l.label}
-          </Link>
-        ))}
-        <Link
-          to="/alerts"
-          className="rounded-md bg-neutral-panel py-5 text-center text-base font-extrabold text-neutral-panel-foreground transition-opacity active:opacity-80"
-        >
-          Current Alerts
-        </Link>
+        <section>
+          <h2 className="text-center text-xl font-extrabold tracking-tight text-foreground lg:text-left">
+            -SEND AN ALERT-
+          </h2>
+          <div className="mt-5 flex flex-col gap-4">
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                className={`rounded-xl px-6 py-6 text-center shadow-alert transition-transform hover:-translate-y-0.5 active:scale-[0.99] lg:text-left ${l.cls}`}
+              >
+                <span className="block text-lg font-extrabold">{l.label}</span>
+                <span className="mt-1 block text-xs font-semibold opacity-90">{l.desc}</span>
+              </Link>
+            ))}
+            <Link
+              to="/alerts"
+              className="rounded-xl bg-neutral-panel px-6 py-6 text-center text-lg font-extrabold text-neutral-panel-foreground transition-opacity hover:opacity-90 lg:text-left"
+            >
+              Current Alerts
+            </Link>
+          </div>
+        </section>
       </div>
     </main>
   );
