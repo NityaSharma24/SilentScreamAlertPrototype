@@ -83,6 +83,8 @@
   --alert-yellow: oklch(0.925 0.19 105);
   --alert-yellow-foreground: oklch(0.16 0.02 100);
   --neutral-panel: oklch(0.17 0.005 260);
+  --submit: oklch(0.34 0.13 264);
+  --submit-foreground: oklch(0.99 0 0);
   --neutral-panel-foreground: oklch(0.99 0 0);
   --map: oklch(0.9 0.06 145);
   --shadow-alert: 0 2px 0 0 oklch(0 0 0 / 0.25);
@@ -128,6 +130,8 @@
   --alert-yellow: oklch(0.925 0.19 105);
   --alert-yellow-foreground: oklch(0.16 0.02 100);
   --neutral-panel: oklch(0.14 0.005 260);
+  --submit: oklch(0.42 0.14 264);
+  --submit-foreground: oklch(0.99 0 0);
   --neutral-panel-foreground: oklch(0.99 0 0);
   --map: oklch(0.42 0.06 145);
   --background: oklch(0.129 0.042 264.695);
