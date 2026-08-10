@@ -44,7 +44,7 @@ function CurrentAlerts() {
   }, []);
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-6 py-10 lg:py-16">
+    <main className="w-full px-4 py-8 sm:px-6 lg:py-12">
       <h1 className="text-center text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
         CURRENT ALERTS
       </h1>
