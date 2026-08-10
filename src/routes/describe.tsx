@@ -44,8 +44,18 @@ function DescribeAlert() {
   const sendSms = useServerFn(sendAlertSms);
   const [details, setDetails] = useState("");
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const wordCount = details.trim() ? details.trim().split(/\s+/).length : 0;
+  const enoughWords = wordCount >= 20;
 
   const submit = () => {
+    if (!enoughWords) {
+      setError(`Please describe your situation in at least 20 words (currently ${wordCount}).`);
+      return;
+    }
+    setError(null);
+
     setBusy(true);
     addAlert({
       level,
