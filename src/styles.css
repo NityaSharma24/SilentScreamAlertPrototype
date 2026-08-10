@@ -74,6 +74,16 @@
 
 :root {
   --radius: 0.625rem;
+  --alert-red: oklch(0.578 0.238 27.5);
+  --alert-red-foreground: oklch(1 0 0);
+  --alert-orange: oklch(0.71 0.19 47);
+  --alert-orange-foreground: oklch(1 0 0);
+  --alert-yellow: oklch(0.925 0.19 105);
+  --alert-yellow-foreground: oklch(0.16 0.02 100);
+  --neutral-panel: oklch(0.42 0.005 260);
+  --neutral-panel-foreground: oklch(0.99 0 0);
+  --map: oklch(0.9 0.06 145);
+  --shadow-alert: 0 2px 0 0 oklch(0 0 0 / 0.25);
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
@@ -109,6 +119,15 @@
 }
 
 .dark {
+  --alert-red: oklch(0.578 0.238 27.5);
+  --alert-red-foreground: oklch(1 0 0);
+  --alert-orange: oklch(0.71 0.19 47);
+  --alert-orange-foreground: oklch(1 0 0);
+  --alert-yellow: oklch(0.925 0.19 105);
+  --alert-yellow-foreground: oklch(0.16 0.02 100);
+  --neutral-panel: oklch(0.42 0.005 260);
+  --neutral-panel-foreground: oklch(0.99 0 0);
+  --map: oklch(0.42 0.06 145);
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
@@ -152,4 +171,11 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+@utility bg-map-grid {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 0.55) 1px, transparent 1px);
+  background-size: 44px 44px;
 }
