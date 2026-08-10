@@ -98,7 +98,7 @@ function DescribeAlert() {
               type="button"
               onClick={submit}
               disabled={busy}
-              className="rounded-lg bg-[--color-submit] py-5 text-center text-lg font-extrabold text-alert-red-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+              className="rounded-lg bg-submit py-5 text-center text-lg font-extrabold text-submit-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
             >
               Submit Alert
             </button>
