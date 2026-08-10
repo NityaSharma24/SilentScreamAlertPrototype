@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { addAlert, type AlertLevel } from "@/lib/alerts-store";
+import { sendAlertSms } from "@/lib/sms.functions";
 
 const levelClasses: Record<AlertLevel, { title: string; button: string; ring: string }> = {
   red: {
@@ -34,16 +36,30 @@ export function AlertScreen({
 }) {
   const c = levelClasses[level];
   const navigate = useNavigate();
+  const sendSms = useServerFn(sendAlertSms);
 
   const send = (type: string) => {
+    if (level === "yellow") {
+      void navigate({ to: "/describe", search: { level, type } });
+      return;
+    }
+
     addAlert({
       level,
       type,
       address:
         typeof window !== "undefined" ? window.localStorage.getItem("last-address") : null,
     });
+    void sendSms({
+      data: {
+        level,
+        type,
+        time: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
+      },
+    }).catch(() => {});
     void navigate({ to: "/sent" });
   };
+
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col justify-center px-6 py-12">
