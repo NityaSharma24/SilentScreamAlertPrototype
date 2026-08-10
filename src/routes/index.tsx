@@ -46,8 +46,8 @@ const links = [
 
 function Home() {
   return (
-    <main className="mx-auto w-full max-w-6xl px-6 py-10 lg:py-16">
-      <header className="mb-10 text-center">
+    <main className="w-full px-4 py-8 sm:px-6 lg:py-12">
+      <header className="mb-8 text-center">
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
           School Safety Alert
         </h1>
@@ -57,33 +57,32 @@ function Home() {
         </p>
       </header>
 
-      <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
-        <MapPanel />
+      <MapPanel />
 
-        <section>
-          <h2 className="text-center text-xl font-extrabold tracking-tight text-foreground lg:text-left">
-            -SEND AN ALERT-
-          </h2>
-          <div className="mt-5 flex flex-col gap-4">
-            {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className={`rounded-xl px-6 py-6 text-center shadow-alert transition-transform hover:-translate-y-0.5 active:scale-[0.99] lg:text-left ${l.cls}`}
-              >
-                <span className="block text-lg font-extrabold">{l.label}</span>
-                <span className="mt-1 block text-xs font-semibold opacity-90">{l.desc}</span>
-              </Link>
-            ))}
+      <section className="mt-10">
+        <h2 className="text-center text-xl font-extrabold tracking-tight text-foreground">
+          -SEND AN ALERT-
+        </h2>
+        <div className="mt-5 grid gap-4 md:grid-cols-3">
+          {links.map((l) => (
             <Link
-              to="/alerts"
-              className="rounded-xl bg-neutral-panel px-6 py-6 text-center text-lg font-extrabold text-neutral-panel-foreground transition-opacity hover:opacity-90 lg:text-left"
+              key={l.to}
+              to={l.to}
+              className={`rounded-xl px-6 py-8 text-center shadow-alert transition-transform hover:-translate-y-0.5 active:scale-[0.99] ${l.cls}`}
             >
-              Current Alerts
+              <span className="block text-lg font-extrabold">{l.label}</span>
+              <span className="mt-1 block text-xs font-semibold opacity-90">{l.desc}</span>
             </Link>
-          </div>
-        </section>
-      </div>
+          ))}
+        </div>
+        <Link
+          to="/alerts"
+          className="mt-4 block rounded-xl bg-neutral-panel px-6 py-6 text-center text-lg font-extrabold text-neutral-panel-foreground transition-opacity hover:opacity-90"
+        >
+          Current Alerts
+        </Link>
+      </section>
     </main>
   );
 }
+
