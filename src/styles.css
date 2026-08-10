@@ -34,6 +34,8 @@
   --color-alert-yellow-foreground: var(--alert-yellow-foreground);
   --color-neutral-panel: var(--neutral-panel);
   --color-neutral-panel-foreground: var(--neutral-panel-foreground);
+  --color-submit: var(--submit);
+  --color-submit-foreground: var(--submit-foreground);
   --color-map: var(--map);
   --shadow-alert: var(--shadow-alert);
 
