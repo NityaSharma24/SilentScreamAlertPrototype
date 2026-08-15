@@ -62,6 +62,7 @@ function DescribeAlert() {
       type,
       address:
         typeof window !== "undefined" ? window.localStorage.getItem("last-address") : null,
+      details: details.trim() || undefined,
     });
     void sendSms({
       data: {
