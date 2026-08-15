@@ -44,17 +44,15 @@ export function AlertScreen({
       return;
     }
 
-    addAlert({
-      level,
-      type,
-      address:
-        typeof window !== "undefined" ? window.localStorage.getItem("last-address") : null,
-    });
+    const address =
+      typeof window !== "undefined" ? window.localStorage.getItem("last-address") : null;
+    addAlert({ level, type, address });
     void sendSms({
       data: {
         level,
         type,
         time: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
+        address,
       },
     }).catch(() => {});
     void navigate({ to: "/sent" });

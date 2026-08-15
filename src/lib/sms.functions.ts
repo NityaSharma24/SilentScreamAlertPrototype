@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const ALERT_PHONE = "+12405005863";
+const ALERT_PHONE = "+12405004469";
 
 export const sendAlertSms = createServerFn({ method: "POST" })
   .inputValidator((data) =>
@@ -10,6 +10,7 @@ export const sendAlertSms = createServerFn({ method: "POST" })
         level: z.enum(["red", "orange", "yellow"]),
         type: z.string().min(1).max(80),
         time: z.string().min(1).max(60),
+        address: z.string().max(200).nullish(),
         details: z.string().max(500).optional(),
       })
       .parse(data),
@@ -17,8 +18,9 @@ export const sendAlertSms = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const levelLabel = `${data.level.charAt(0).toUpperCase()}${data.level.slice(1)} Alert`;
     const body =
-      `${levelLabel} for ${data.type} has been reported at ${data.time}.` +
-      (data.details ? ` Details: ${data.details}` : "");
+      `${levelLabel} — ${data.type}. Reported just now (${data.time}). ` +
+      `Location: ${data.address?.trim() ? data.address.trim() : "Address unavailable"}.` +
+      (data.details ? ` Description: ${data.details}` : " No description provided.");
 
     const lovableApiKey = process.env["LOVABLE_API_KEY"];
     const twilioKey = process.env["TWILIO_API_KEY"];
