@@ -110,7 +110,7 @@ export function MapPanel({
       aria-label="Your current location"
       className="overflow-hidden rounded-xl border border-border bg-card shadow-sm"
     >
-      <div className="relative h-40 w-full bg-map sm:h-56 md:h-72 lg:h-[380px]">
+      <div className="relative h-32 w-full bg-map sm:h-56 md:h-72 lg:h-[380px]">
         <div ref={mapEl} className="absolute inset-0" />
         {status !== "ready" ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-map/90 px-6 text-center sm:gap-3">
