@@ -25,7 +25,7 @@ export function getAlerts(): StoredAlert[] {
   return read().sort((a, b) => b.at - a.at);
 }
 
-export function addAlert(alert: Omit<StoredAlert, "id" | "at">): StoredAlert {
+export function addAlert(alert: Omit<StoredAlert, "id" | "at" | "details"> & { details?: string }): StoredAlert {
   const entry: StoredAlert = {
     ...alert,
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
