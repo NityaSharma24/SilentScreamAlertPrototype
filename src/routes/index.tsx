@@ -46,7 +46,7 @@ const links = [
 
 function Home() {
   return (
-    <main className="w-full px-3 py-3 sm:px-6 sm:py-8 lg:py-12">
+    <main className="flex min-h-[100dvh] w-full flex-col px-3 py-3 sm:px-6 sm:py-8 lg:py-12">
       <header className="mb-3 text-center sm:mb-8">
         <h1 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
           Silent Scream
@@ -63,7 +63,7 @@ function Home() {
 
       <MapPanel />
 
-      <section className="mt-4 sm:mt-10">
+      <section className="mt-4 flex flex-1 flex-col justify-end sm:mt-10">
         <h2 className="text-center text-lg font-extrabold tracking-tight text-foreground sm:text-xl">
           -SEND AN ALERT-
         </h2>
@@ -72,9 +72,9 @@ function Home() {
             <Link
               key={l.to}
               to={l.to}
-              className={`rounded-xl px-4 py-3 text-center shadow-alert transition-transform hover:-translate-y-0.5 active:scale-[0.99] sm:px-6 sm:py-6 lg:py-8 ${l.cls}`}
+              className={`rounded-xl px-4 py-5 text-center shadow-alert transition-transform hover:-translate-y-0.5 active:scale-[0.99] sm:px-6 sm:py-6 lg:py-8 ${l.cls}`}
             >
-              <span className="block text-base font-extrabold sm:text-lg">{l.label}</span>
+              <span className="block text-lg font-extrabold sm:text-lg">{l.label}</span>
               <span className="mt-1 block text-[11px] font-semibold opacity-90 sm:text-xs">
                 {l.desc}
               </span>
@@ -83,7 +83,7 @@ function Home() {
         </div>
         <Link
           to="/alerts"
-          className="mt-3 block rounded-xl bg-neutral-panel px-4 py-3 text-center text-base font-extrabold text-neutral-panel-foreground transition-opacity hover:opacity-90 sm:mt-4 sm:py-6 sm:text-lg"
+          className="mt-3 block rounded-xl bg-neutral-panel px-4 py-5 text-center text-base font-extrabold text-neutral-panel-foreground transition-opacity hover:opacity-90 sm:mt-4 sm:py-6 sm:text-lg"
         >
           Current Alerts
         </Link>

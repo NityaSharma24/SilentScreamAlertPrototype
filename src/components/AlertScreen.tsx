@@ -63,7 +63,7 @@ export function AlertScreen({
     <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col justify-center px-6 py-12">
       <div className={`rounded-2xl border bg-card p-8 shadow-sm sm:p-12 ${c.ring}`}>
         <h1
-          className={`text-center text-4xl font-extrabold tracking-tight sm:text-5xl ${c.title}`}
+          className={`text-center text-5xl font-extrabold tracking-tight sm:text-6xl ${c.title}`}
         >
           {heading}
         </h1>
