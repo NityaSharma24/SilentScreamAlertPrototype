@@ -110,12 +110,12 @@ export function MapPanel({
       aria-label="Your current location"
       className="overflow-hidden rounded-xl border border-border bg-card shadow-sm"
     >
-      <div className="relative h-72 w-full bg-map lg:h-[380px]">
+      <div className="relative h-40 w-full bg-map sm:h-56 md:h-72 lg:h-[380px]">
         <div ref={mapEl} className="absolute inset-0" />
         {status !== "ready" ? (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-map/90 px-6 text-center">
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-map/90 px-6 text-center sm:gap-3">
             <div className="bg-map-grid absolute inset-0 opacity-60" aria-hidden />
-            <p className="relative z-10 text-sm font-semibold text-neutral-panel">
+            <p className="relative z-10 text-xs font-semibold text-neutral-panel sm:text-sm">
               {status === "locating"
                 ? "Finding your location…"
                 : status === "idle"
@@ -126,7 +126,7 @@ export function MapPanel({
               <button
                 type="button"
                 onClick={requestLocation}
-                className="relative z-10 rounded-md bg-neutral-panel px-4 py-2 text-sm font-extrabold text-neutral-panel-foreground transition-opacity hover:opacity-90"
+                className="relative z-10 rounded-md bg-neutral-panel px-3 py-1.5 text-xs font-extrabold text-neutral-panel-foreground transition-opacity hover:opacity-90 sm:px-4 sm:py-2 sm:text-sm"
               >
                 Allow location access
               </button>
@@ -134,7 +134,7 @@ export function MapPanel({
           </div>
         ) : null}
       </div>
-      <p className="bg-neutral-panel px-4 py-3 text-center text-sm font-bold text-neutral-panel-foreground">
+      <p className="bg-neutral-panel px-3 py-2 text-center text-xs font-bold text-neutral-panel-foreground sm:px-4 sm:py-3 sm:text-sm">
         {address ?? (status === "ready" ? "Locating address…" : "No address available")}
       </p>
     </section>
