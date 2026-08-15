@@ -5,7 +5,7 @@ export type StoredAlert = {
   level: AlertLevel;
   type: string;
   address: string | null;
-  details?: string;
+  details: string | undefined;
   at: number;
 };
 
