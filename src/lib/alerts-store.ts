@@ -31,9 +31,6 @@ export function addAlert(alert: Omit<StoredAlert, "id" | "at" | "details"> & { d
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     at: Date.now(),
   };
-  if (alert.details === undefined) {
-    delete (entry as Partial<StoredAlert>).details;
-  }
   const next = [entry, ...read()].slice(0, 50);
   window.localStorage.setItem(KEY, JSON.stringify(next));
   return entry;
