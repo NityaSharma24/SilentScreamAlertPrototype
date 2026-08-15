@@ -5,7 +5,7 @@ export type StoredAlert = {
   level: AlertLevel;
   type: string;
   address: string | null;
-  details: string | undefined;
+  details?: string;
   at: number;
 };
 
@@ -25,12 +25,15 @@ export function getAlerts(): StoredAlert[] {
   return read().sort((a, b) => b.at - a.at);
 }
 
-export function addAlert(alert: Omit<StoredAlert, "id" | "at" | "details"> & { details?: string | undefined }): StoredAlert {
+export function addAlert(alert: Omit<StoredAlert, "id" | "at" | "details"> & { details?: string }): StoredAlert {
   const entry: StoredAlert = {
     ...alert,
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     at: Date.now(),
   };
+  if (alert.details === undefined) {
+    delete (entry as Partial<StoredAlert>).details;
+  }
   const next = [entry, ...read()].slice(0, 50);
   window.localStorage.setItem(KEY, JSON.stringify(next));
   return entry;
