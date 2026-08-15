@@ -3,11 +3,10 @@ import { useEffect, useState } from "react";
 import { getAlerts, clearAlerts, timeAgo, type StoredAlert } from "@/lib/alerts-store";
 import campusPhoto from "@/assets/echhs.png.asset.json";
 
-
 export const Route = createFileRoute("/alerts")({
   head: () => ({
     meta: [
-      { title: "Current Alerts — School Safety Alert App" },
+      { title: "Current Alerts — Silent Scream" },
       {
         name: "description",
         content: "Review alerts that have recently been sent from your school campus.",
@@ -36,8 +35,15 @@ const levelBorder: Record<StoredAlert["level"], string> = {
   yellow: "border-l-alert-yellow",
 };
 
+const levelBg: Record<StoredAlert["level"], string> = {
+  red: "bg-alert-red/10",
+  orange: "bg-alert-orange/10",
+  yellow: "bg-alert-yellow/10",
+};
+
 function CurrentAlerts() {
   const [alerts, setAlerts] = useState<StoredAlert[]>([]);
+  const [selected, setSelected] = useState<StoredAlert | null>(null);
 
   useEffect(() => {
     setAlerts(getAlerts());
@@ -74,7 +80,6 @@ function CurrentAlerts() {
           </div>
         </div>
 
-
         <section>
           <div className="flex items-center justify-between gap-4">
             <h2 className="text-lg font-extrabold italic tracking-tight text-foreground">
@@ -103,14 +108,19 @@ function CurrentAlerts() {
               alerts.map((a) => (
                 <li
                   key={a.id}
-                  className={`rounded-lg border border-l-4 border-border bg-card px-4 py-3 shadow-sm ${levelBorder[a.level]}`}
+                  onClick={() => setSelected(a)}
+                  className={`cursor-pointer rounded-lg border border-l-4 border-border bg-card px-4 py-3 shadow-sm transition-colors hover:bg-muted ${levelBorder[a.level]}`}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") setSelected(a);
+                  }}
                 >
                   <p className={`text-sm font-extrabold uppercase ${levelText[a.level]}`}>
                     {a.level} alert: {a.type}
                   </p>
                   <p className="mt-1 text-xs font-semibold text-muted-foreground">
                     [{timeAgo(a.at)}]
-                    {a.address ? ` · ${a.address}` : ""}
                   </p>
                 </li>
               ))
@@ -127,6 +137,59 @@ function CurrentAlerts() {
           Home
         </Link>
       </div>
+
+      {selected ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+          onClick={() => setSelected(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className={`w-full max-w-md rounded-2xl border border-border bg-card p-6 shadow-lg ${levelBorder[selected.level]}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className={`rounded-xl px-4 py-3 text-center ${levelBg[selected.level]}`}>
+              <p className={`text-lg font-extrabold uppercase ${levelText[selected.level]}`}>
+                {selected.level} alert: {selected.type}
+              </p>
+            </div>
+
+            <div className="mt-5 space-y-3 text-sm font-semibold text-foreground">
+              <p>
+                <span className="text-muted-foreground">Reported:</span>{" "}
+                {timeAgo(selected.at).replace("received ", "")}
+              </p>
+              {selected.address ? (
+                <p>
+                  <span className="text-muted-foreground">From address:</span>{" "}
+                  {selected.address}
+                </p>
+              ) : null}
+              {selected.details ? (
+                <div>
+                  <p className="text-muted-foreground">Description:</p>
+                  <p className="mt-1 max-h-48 overflow-y-auto rounded-lg border border-border bg-muted p-3 text-foreground">
+                    {selected.details}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-muted-foreground">No description provided.</p>
+              )}
+            </div>
+
+            <div className="mt-6 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setSelected(null)}
+                className="rounded-lg bg-neutral-panel px-8 py-3 text-base font-extrabold text-neutral-panel-foreground transition-opacity hover:opacity-90"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </main>
   );
 }
