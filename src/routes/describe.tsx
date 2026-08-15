@@ -58,11 +58,12 @@ function DescribeAlert() {
 
     setBusy(true);
     const trimmedDetails = details.trim();
+    const address =
+      typeof window !== "undefined" ? window.localStorage.getItem("last-address") : null;
     addAlert({
       level,
       type,
-      address:
-        typeof window !== "undefined" ? window.localStorage.getItem("last-address") : null,
+      address,
       ...(trimmedDetails ? { details: trimmedDetails } : {}),
     });
     void sendSms({
@@ -70,6 +71,7 @@ function DescribeAlert() {
         level,
         type,
         time: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
+        address,
         details: trimmedDetails || undefined,
       },
     }).catch(() => {});
