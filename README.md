@@ -1,14 +1,18 @@
-# Welcome to your Lovable project
+# Location Aware Alerts
+
+so i built a an app for the congressional app challenge. i want to build it through here. can you create it on here with the UIs I'd designed for the app. the first design is the home screen and the other ones are what happens when u click the alert of each color. the first front page at the top should show ur current location.
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://silentscr.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/b923d11e-1256-4791-988d-5f41a7e09ec3).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +24,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
